@@ -1,0 +1,112 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="login-page">
+
+<div class="login-card">
+
+<h2>Rice Aggregation Service</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="email" name="email" placeholder="Enter Email "
+oninput="this.value=this.value.toLowerCase()">
+
+<input type="password" name="password" placeholder="Enter Password">
+
+<button type="submit" class="login-btn">Login</button>
+
+</form>
+
+<div style="margin-top:15px; text-align:center;">
+<p><a href="/forgot-password/">Forgot Password?</a></p>
+<p>New user? <a href="/signup/">Create account</a></p>
+</div>
+
+<!-- BACK BUTTON -->
+<a href="{% url 'index' %}">
+<button class="back-btn">Back</button>
+</a>
+
+</div>
+
+</div>
+
+
+<style>
+
+.login-page{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
+background-image:url("/media/paddy1.jpeg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-card{
+background:rgb(234, 242, 233);
+padding:40px;
+border-radius:15px;
+width:450px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+/* needed for back button */
+position:relative;
+}
+
+.login-card input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+.login-btn{
+width:70%;
+padding:12px;
+background:#8BC34A;
+border:none;
+border-radius:25px;
+font-size:18px;
+cursor:pointer;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+position:absolute;
+bottom:20px;
+left:20px;
+
+padding:6px 18px;
+width:auto;          /* prevents full width */
+min-width:80px;     /* small button size */
+
+background:#8BC34A;
+border:none;
+border-radius:20px;
+font-size:14px;
+color:white;
+cursor:pointer;
+}
+
+.back-btn:hover{
+background:#6FAF34;
+}
+
+</style>
+
+{% endblock %}

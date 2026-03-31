@@ -1,0 +1,230 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div class="page">
+
+    <div class="card">
+        <!-- BACK BUTTON INSIDE CARD -->
+    <button onclick="history.back()" class="back-btn">← Back</button>
+        <h2>Farmer Harvest Entry</h2>
+        
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Farmer Name -->
+            <input type="text" name="farmer_name" placeholder="Farmer Name"
+                   pattern="[A-Za-z ]+" title="Only characters allowed" required>
+
+            <!-- Village -->
+            <input type="text" name="village" placeholder="Village"
+                   pattern="[A-Za-z ]+" required>
+
+            <!-- State -->
+            <input type="text" name="state" placeholder="State"
+                   pattern="[A-Za-z ]+" required>
+
+            <!-- Phone -->
+            <input type="text" name="phone" placeholder="Phone Number"
+                   pattern="[0-9]{10}" maxlength="10"
+                   title="Enter 10 digit number" required>
+
+            <!-- Date -->
+           <input type="text" id="dateInput" name="date" placeholder=" Data(DD/MM/YYYY or DD-MM-YYYY)" required>
+            
+           <input type="text" name="operator_name" placeholder="Operator Name" required pattern="[A-Za-z ]+"
+            title="Only alphabets allowed">
+
+           <input type="text" name="machine_number" placeholder="Machine Number (AP34CJ6778)" maxlength="10" required
+            pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"  title="Format: AP34CJ6778"
+            style="text-transform:uppercase;">
+            <input type="number" name="acres" placeholder="How many Acres Harvested"
+            step="0.01" min="0" required>
+
+            <!-- Time -->
+            <input type="text" name="time" placeholder="Total Time (hours)" required>
+            <input type="number" name="amount" placeholder="Total Amount" required>
+            <!-- Upload -->
+            <input type="file" name="bill" accept="image/*" required>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <!-- Back -->
+       
+
+    </div>
+
+</div><script>
+document.querySelector('input[name="machine_number"]').addEventListener('input', function(){
+    this.value = this.value.toUpperCase();
+});
+</script>
+
+<script>
+document.getElementById("dateInput").addEventListener("blur", function(){
+
+    let value = this.value;
+    let regex = /^(0?[1-9]|[12][0-9]|3[01])[-\/](0?[1-9]|1[0-2])[-\/](\d{4})$/;
+
+    if(!regex.test(value)){
+        alert("Invalid date format");
+        this.value = "";
+        return;
+    }
+
+    let parts = value.split(/[-\/]/);
+    let day = parseInt(parts[0]);
+    let month = parseInt(parts[1]);
+    let year = parseInt(parts[2]);
+
+    if(year > 2026){
+        alert("Year must be ≤ 2026");
+        this.value = "";
+    }
+
+});
+</script>
+<script>
+document.querySelectorAll(".alert").forEach(function(alert){
+
+    if(alert.classList.contains("success")){
+        setTimeout(() => alert.style.display = "none", 3000);
+    }
+
+    if(alert.classList.contains("error")){
+        setTimeout(() => alert.style.display = "none", 10000);
+    }
+
+});
+</script>
+
+<style>
+
+.alert{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* SUCCESS */
+.alert.success{
+    background: #4CAF50;
+    
+}
+
+/* ERROR */
+.alert.error{
+    background: #e53935;
+    
+}
+
+/* animation */
+@keyframes fadeIn{
+    from{opacity:0; transform: translateY(-10px);}
+    to{opacity:1; transform: translateY(0);}
+}
+/* FULL SCREEN BACKGROUND */
+.page{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    background-image: url("/media/paddy.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD (LIKE 2nd IMAGE) */
+.card{
+    background: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+    position: relative;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+.card h2{
+    margin-bottom: 20px;
+}
+
+/* INPUT FIELDS */
+.card input{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* FILE INPUT */
+.card input[type="file"]{
+    padding: 5px;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn{
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    background: #45a049;
+}
+
+/* BACK BUTTON (TOP LEFT LIKE IMAGE) */
+.back-btn{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+color:#333;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight:500;
+    width: 100px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+    transition:0.3s;
+    background: white;
+}
+
+.back-btn:hover{
+    background: #f1f1f1;
+}
+
+</style>
+{% endblock %}

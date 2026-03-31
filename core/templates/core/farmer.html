@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Farmer Entry</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI', sans-serif;
+height:100vh;
+
+background-image:url("/media/paddy.jpg");
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* Form Card */
+.form-box{
+background:rgba(255,255,255,0.88);
+backdrop-filter:blur(8px);
+padding:35px;
+width:420px;
+border-radius:14px;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+position:relative;
+}
+
+/* Title */
+.title{
+text-align:center;
+font-size:26px;
+font-weight:600;
+margin-bottom:20px;
+color:#2e5e2e;
+}
+
+/* Input fields */
+input{
+width:100%;
+padding:11px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:14px;
+transition:0.3s;
+}
+
+input:focus{
+border-color:#4CAF50;
+outline:none;
+box-shadow:0 0 4px rgba(76,175,80,0.5);
+}
+
+/* Label */
+label{
+font-size:14px;
+font-weight:500;
+color:#444;
+}
+
+/* Submit Button */
+button{
+width:100%;
+padding:12px;
+margin-top:12px;
+background:#4CAF50;
+border:none;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#3c9441;
+}
+
+/* Back Button (top-left inside card) */
+.back-btn{
+position:absolute;
+top:15px;
+left:15px;
+background:white;
+padding:6px 14px;
+border-radius:8px;
+text-decoration:none;
+color:#333;
+font-size:14px;
+font-weight:500;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.back-btn:hover{
+background:#f1f1f1;
+}
+
+/* Messages */
+.message{
+padding:10px;
+margin-bottom:10px;
+color:white;
+text-align:center;
+border-radius:6px;
+font-size:14px;
+}
+
+.message.success{
+background-color:#4CAF50;
+}
+
+.message.error{
+background-color:#e53935;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+<a href="/add/" class="back-btn">← Back</a>
+
+<div class="title">
+Farmer Entry
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div class="message {{ message.tags }}">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input type="text" name="farmer_name"
+placeholder="Farmer Name"
+pattern="[A-Za-z ]+"
+required>
+
+<input type="text" name="village"
+placeholder="Village"
+pattern="[A-Za-z ]+"
+required>
+
+<input type="text" name="district"
+placeholder="District"
+pattern="[A-Za-z ]+"
+required>
+
+<input type="tel" name="mobile"
+placeholder="Mobile Number"
+pattern="[0-9]{10}"
+maxlength="10"
+required>
+
+<input type="number" name="acres"
+placeholder="Total Acres"
+required>
+
+<input type="text"
+name="crop_type"
+placeholder="Crop Type"
+pattern="[A-Za-z ]+"
+title="Only letters allowed"
+oninput="this.value = this.value.replace(/[^A-Za-z ]/g,'')"
+required>
+
+<input type="text"
+name="bags"
+placeholder="Example: 80 bags(456kgs) or 80 bags(2T)"
+pattern="^[0-9]+\sbags\([0-9]+(kgs|kg|T|TW|t|tw)\)$"
+title="Enter format like 80 bags(456kgs) or 80 bags(2T)"
+required>
+
+<input type="number" name="amount"
+placeholder="Total Amount"
+required>
+
+<input type="text" name="lorry"
+placeholder="Lorry Number (Example: AP34CG2345)"
+pattern="^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{1,10}$"
+maxlength="10"
+title="Enter valid lorry number like AP34CG2345"
+style="text-transform:uppercase"
+required>
+
+<label>Upload Weight Image</label>
+<input type="file" name="image">
+
+<button type="submit">Submit</button>
+
+</form>
+
+</div>
+<script>
+
+document.querySelectorAll('.message').forEach(function(msg){
+
+    if(msg.classList.contains('success')){
+        setTimeout(function(){
+            msg.style.display = "none";
+        },3000);   // 3 seconds
+    }
+
+    if(msg.classList.contains('error')){
+        setTimeout(function(){
+            msg.style.display = "none";
+        },15000);  // 15 seconds
+    }
+
+});
+
+</script>
+<script>
+document.querySelector('input[name="lorry"]').addEventListener('input', function() {
+this.value = this.value.toUpperCase();
+});
+</script>
+</body>
+</html>

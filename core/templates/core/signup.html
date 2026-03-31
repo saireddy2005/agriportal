@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Account</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+height:100vh;
+
+background-image: url("/media/paddy1.jpeg");
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* signup card */
+
+.signup-box{
+background:rgb(234, 242, 233);
+padding:40px;
+border-radius:15px;
+width:350px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+/* needed for back button positioning */
+position:relative;
+}
+
+
+/* title */
+
+.title{
+font-size:26px;
+margin-bottom:25px;
+color:#333;
+}
+
+
+/* input fields */
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:16px;
+}
+
+
+/* signup button */
+
+.signup-btn{
+width:100%;
+padding:12px;
+background:#8BC34A;
+border:none;
+color:#111;
+font-size:18px;
+border-radius:25px;
+cursor:pointer;
+margin-top:10px;
+transition:0.3s;
+}
+
+/* hover */
+.signup-btn:hover{
+background: #6FAF34;
+color:rgb(10, 13, 9);
+}
+
+/* click */
+.signup-btn:active{
+transform:scale(0.96);
+}
+
+/* login link */
+
+.login-link{
+margin-top:15px;
+font-size:14px;
+}
+
+.login-link a{
+color:#4CAF50;
+text-decoration:none;
+font-weight:bold;
+}
+
+.message{
+padding:10px;
+margin-bottom:10px;
+color:white;
+text-align:center;
+border-radius:5px;
+}
+
+.success{
+background-color:green;
+}
+
+.error{
+background-color:red;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+position:absolute;
+bottom:20px;
+left:20px;
+
+padding:8px 20px;
+background:#8BC34A;
+border:none;
+border-radius:20px;
+color:white;
+font-size:14px;
+cursor:pointer;
+}
+
+.back-btn:hover{
+background:#6FAF34;
+}
+
+</style>
+</head>
+
+<script>
+
+setTimeout(function(){
+
+    var messages = document.querySelectorAll(".message");
+
+    messages.forEach(function(msg){
+
+        msg.style.transition = "opacity 0.5s";
+        msg.style.opacity = "0";
+
+        setTimeout(function(){
+            msg.style.display = "none";
+        },500);
+
+    });
+
+},2000);
+
+</script>
+<body>
+
+<div class="signup-page">
+
+    <div class="signup-box">
+
+        <div class="title">Create Account</div>
+         {% if messages %}
+    {% for message in messages %}
+        <div class="message {{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="fullname" placeholder="Full Name"
+            pattern="[A-Za-z ]+" title="Only letters allowed" required>
+
+
+            <input type="email" name="email" placeholder="example@gmail.com"pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+            title="Email must end with @gmail.com"required>
+
+            <input type="tel" name="mobile" placeholder="Mobile Number"pattern="[0-9]{10}" maxlength="10"
+            title="Enter 10 digit mobile number" required>
+
+            <input type="password" name="password" placeholder="New Password" required minlength="8" required>
+
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required minlength="8" required>
+
+            <button type="submit" class="signup-btn">Create Account</button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="/login/">Login</a>
+        </div>
+
+        <!-- BACK BUTTON -->
+        <a href="{% url 'index' %}">
+            <button class="back-btn">Back</button>
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

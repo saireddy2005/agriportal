@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reported Users</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#0f2027;
+color:white;
+}
+
+.container{
+width:80%;
+margin:auto;
+margin-top:40px;
+}
+
+.report-card{
+background:#1f3b4d;
+padding:20px;
+margin-bottom:15px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Reported Users</h2>
+
+{% for report in reports %}
+
+<div class="report-card">
+
+<p><b>Reported User:</b> {{report.reported_user}}</p>
+
+<p><b>Reported By:</b> {{report.reported_by}}</p>
+
+<p><b>Reason:</b> {{report.reason}}</p>
+
+<p><b>Date:</b> {{report.created_at}}</p>
+
+</div>
+
+{% empty %}
+
+<p>No reports found</p>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

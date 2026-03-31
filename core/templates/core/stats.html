@@ -1,0 +1,236 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="title-container">
+<h1 class="dashboard-title">AGRICULTURE STATISTICS DASHBOARD</h1>
+</div>
+
+<div class="dashboard-cards">
+
+<div class="card">
+<h3>Total Farmers Entries</h3>
+<p>{{ total_farmers }}</p>
+</div>
+
+<div class="card">
+<h3>Total Mills Entries</h3>
+<p>{{ total_mills }}</p> 
+</div>
+
+<div class="card">
+<h3>Total Users</h3>
+<p>{{ total_users }}</p>
+</div>
+
+<div class="card">
+<h3>Total Notifications</h3>
+<p>{{ total_notifications }}</p>
+</div>
+
+</div>
+
+<div class="stats-container">
+
+<div class="chart-box">
+<h2>Crop Cultivation Types</h2>
+<canvas id="cropPie"></canvas>
+</div>
+
+<div class="chart-box">
+<h2>Weekly Farmer Selling</h2>
+<canvas id="weeklyBar"></canvas>
+</div>
+
+<div class="chart-box">
+<h2>Daily Aggregator Business</h2>
+<canvas id="dailyLine"></canvas>
+</div>
+
+</div>
+
+<a href="/home/" class="back-btn">← Back</a>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+// ✅ Safe variable parsing (NO errors even if empty)
+const cropLabels = JSON.parse('{{ crop_labels|default:"[]"|escapejs }}');
+const cropValues = JSON.parse('{{ crop_values|default:"[]"|escapejs }}');
+
+const weekLabels = JSON.parse('{{ week_labels|default:"[]"|escapejs }}');
+const weekValues = JSON.parse('{{ week_values|default:"[]"|escapejs }}');
+const dayLabels = JSON.parse('{{ day_labels|default:"[]"|escapejs }}');
+const dayValues = JSON.parse('{{ day_values|default:"[]"|escapejs }}');
+
+
+// ✅ Debug logs
+console.log("Script Loaded");
+console.log(cropLabels);
+console.log(cropValues);
+console.log(weekLabels);
+console.log(weekValues);
+console.log(dayLabels);
+console.log(dayValues);
+
+
+// ✅ PIE CHART
+new Chart(document.getElementById('cropPie'), {
+    type: 'pie',
+    data: {
+        labels: cropLabels,
+        datasets: [{
+            data: cropValues
+        }]
+    }
+});
+
+
+// ✅ BAR CHART
+new Chart(document.getElementById('weeklyBar'), {
+    type: 'bar',
+    data: {
+        labels: weekLabels,
+        datasets: [{
+            label: 'Farmers',
+            data: weekValues
+        }]
+    }
+});
+
+
+// ✅ LINE CHART
+new Chart(document.getElementById('dailyLine'), {
+    type: 'line',
+    data: {
+        labels: dayLabels,
+        datasets: [{
+            label: 'Business',
+            data: dayValues,
+            fill: true
+        }]
+    }
+});
+
+</script>
+
+<style>
+
+/* BACKGROUND IMAGE */
+
+body{
+background-image:url("/media/paddy3.jpeg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+
+
+/* DASHBOARD CARDS */
+
+.dashboard-cards{
+display:flex;
+justify-content:space-between;
+margin:30px 0;
+gap:20px;
+}
+
+
+/* CARD */
+.card{
+flex:1;
+ /* solid white box */
+padding:25px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+.card h3{
+margin-bottom:10px;
+}
+
+
+.card p{
+font-size:35px;
+font-weight:bold;
+
+color:#080b08;
+}
+
+
+/* GRAPH CONTAINER */
+
+.stats-container{
+width:75%;
+margin:auto;
+}
+
+
+/* TITLE */
+
+.dashboard-title{
+text-align:center;
+font-size:30px;
+font-weight:700;
+letter-spacing:2px;
+color:#1b3a1b;
+margin-top:15px;
+margin-bottom:25px;
+
+
+padding:10px 20px;
+border-radius:10px;
+display:inline-block;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* GRAPH BOX */
+
+.chart-box{
+background:#d1e1d1;   /* white box */
+padding:22px;
+margin-bottom:25px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+}
+
+
+/* CHART SIZE */
+
+canvas{
+width:100% !important;
+height:330px !important;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#28c840;
+color:white;
+padding:10px 18px;
+border-radius:6px;
+text-decoration:none;
+transition:0.3s;
+}
+
+
+/* BACK BUTTON HOVER */
+
+.back-btn:hover{
+background:#3cd742;
+transform:scale(1.05);
+}
+
+</style>
+
+{% endblock %}

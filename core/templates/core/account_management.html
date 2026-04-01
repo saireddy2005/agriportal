@@ -8,13 +8,13 @@
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
 
-            /* ✅ FIXED BACKGROUND */
-            background: url("/media/paddy.jpg") no-repeat center center fixed;
+            /* ✅ UPDATED BACKGROUND */
+            background: url("/media/paddy3.jpeg") no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
         }
 
-        /* 🔥 STYLISH TITLE */
+        /* TITLE */
         .title {
             text-align: center;
             font-size: 36px;
@@ -32,6 +32,21 @@
             gap: 40px;
             margin-top: 30px;
             flex-wrap: wrap;
+            align-items: flex-start;
+            padding-bottom: 40px;
+        }
+
+        /* MOBILE FIX */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .box {
+                width: 90%;
+            }
         }
 
         /* CARD */
@@ -137,43 +152,34 @@
             transform: scale(1.05);
         }
 
-        .top-bar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
+        /* BACK BUTTON FIX */
         .back-btn {
-            position: absolute;
-            left: 260px;
-            top: 90px;
-            transform: translate(-50%,-50%);
+            position: fixed;
+            top: 15px;
+            left: 15px;
 
-            background:rgba(118, 218, 93, 0.6);
+            background: rgba(231, 235, 230, 0.6);
             color: black;
-            padding: 6px 10px;
-            width: 50px;
+            padding: 6px 12px;
             border-radius: 10px;
             text-decoration: none;
             font-weight: 500;
             box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.3s;
         }
 
         .back-btn:hover {
             background: #7ad474;
-            transform: translate(-50%,-50%) scale(1.05);
+            transform: scale(1.05);
         }
 
     </style>
 </head>
 
-<div class="top-bar">
-    <a href="{% url 'profile' %}" class="back-btn">Back</a>
-</div>
-
 <body>
+
+<a href="{% url 'profile' %}" class="back-btn">Back</a>
 
 <div class="title">💰 ACCOUNT MANAGEMENT SYSTEM</div>
 

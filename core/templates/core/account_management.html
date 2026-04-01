@@ -8,42 +8,36 @@
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
 
+            /* ✅ UPDATED BACKGROUND */
             background: url("/media/paddy3.jpeg") no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
-
-            /* ✅ CENTER FIX */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         /* TITLE */
         .title {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 80px;
             color: rgb(53, 48, 48);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
         }
 
         /* CONTAINER */
         .container {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 40px;
+            margin-top: 50px;
             flex-wrap: wrap;
-            width: 100%;
+            align-items: flex-start;
+            padding-bottom: 40px;
         }
 
-        /* MOBILE CENTER FIX */
+        /* MOBILE FIX */
         @media (max-width: 768px) {
-            body {
-                justify-content: center; /* 🔥 vertical center */
-            }
-
             .container {
                 flex-direction: column;
                 align-items: center;
@@ -97,6 +91,7 @@
         .search-btn {
             padding: 5px 8px;
             background: #ebecef;
+            color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -153,24 +148,30 @@
             cursor: pointer;
         }
 
-        /* ✅ BACK BUTTON (NEW POSITION) */
+        .delete-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* BACK BUTTON FIX */
         .back-btn {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 120px;
+            left: 46%;
 
-            background: rgba(255,255,255,0.7);
-            padding: 6px 12px;
-            border-radius: 8px;
-            text-decoration: none;
+            background: rgba(118, 218, 93, 0.6);
             color: black;
-            font-weight: bold;
-
-            z-index: 1000; /* 🔥 always visible */
+            padding: 6px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            font-size: 16px;
+            transition: 0.3s;
         }
 
         .back-btn:hover {
             background: #7ad474;
+            transform: scale(1.05);
         }
 
     </style>
@@ -178,7 +179,7 @@
 
 <body>
 
-<a href="{% url 'profile' %}" class="back-btn">← Back</a>
+<a href="{% url 'profile' %}" class="back-btn">Back</a>
 
 <div class="title">💰 ACCOUNT MANAGEMENT SYSTEM</div>
 

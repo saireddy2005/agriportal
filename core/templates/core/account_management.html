@@ -7,19 +7,21 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
-
-            /* ✅ UPDATED BACKGROUND */
-            background: url("/media/paddy3.jpeg") no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
         }
 
-        /* TITLE */
+        /* BACKGROUND FIX */
+        body {
+           
+background-image:url("/media/paddy.jpg");
+            background-size: cover;
+        }
+
+        /* 🔥 STYLISH TITLE */
         .title {
             text-align: center;
             font-size: 36px;
             font-weight: bold;
-            margin-top: 80px;
+            margin-top: 20px;
             color: rgb(53, 48, 48);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
             letter-spacing: 2px;
@@ -30,23 +32,8 @@
             display: flex;
             justify-content: center;
             gap: 40px;
-            margin-top: 50px;
+            margin-top: 30px;
             flex-wrap: wrap;
-            align-items: flex-start;
-            padding-bottom: 40px;
-        }
-
-        /* MOBILE FIX */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-                margin-top: 20px;
-            }
-
-            .box {
-                width: 90%;
-            }
         }
 
         /* CARD */
@@ -68,6 +55,7 @@
 
         .mill-title {
             background: linear-gradient(135deg, #264274, #324078);
+           
         }
 
         .farmer-title {
@@ -124,7 +112,7 @@
             border: 1px solid #ccc;
         }
 
-        /* ADD BUTTON */
+        /* ADD BUTTON (SMALL WIDTH) */
         .add-btn {
             width: 50%;
             margin: 10px auto;
@@ -151,35 +139,41 @@
         .delete-btn:hover {
             transform: scale(1.05);
         }
+.top-bar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
 
-        /* BACK BUTTON FIX */
-        .back-btn {
-            position: fixed;
-            top: 127px;
-            left: 47%;
+.back-btn {
+position: absolute;
+left: 260px;
+top: 90px;
+transform: translate(-50%,-50%);
 
-            background: rgba(118, 218, 93, 0.6);
-            color: black;
-            padding: 6px 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 500;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            font-size: 16px;
-            transition: 0.3s;
-        }
+   background:rgba(118, 218, 93, 0.6);
+    color: black;
+    padding: 6px 10px;
+    width: 50px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    font-size: 18px;
+    transition: 0.3s;
+    
+}
 
-        .back-btn:hover {
-            background: #7ad474;
-            transform: scale(1.05);
-        }
-
+.back-btn:hover {
+    background: #7ad474;
+    transform: translate(-50%,-50%);scale :(1.05);
+}
     </style>
 </head>
-
+<div class="top-bar">
+    <a href="{% url 'profile' %}" class="back-btn">Back</a>
+</div>
 <body>
-
-<a href="{% url 'profile' %}" class="back-btn">Back</a>
 
 <div class="title">💰 ACCOUNT MANAGEMENT SYSTEM</div>
 
@@ -189,11 +183,13 @@
     <div class="box">
         <h2 class="mill-title">TOOK FROM OTHERS</h2>
 
+        <!-- SEARCH -->
         <form method="GET" class="search-bar">
             <input type="text" name="mill_search" placeholder="Search Mill...">
             <button class="search-btn">🔍</button>
         </form>
 
+        <!-- TABLE -->
         <table>
             <tr>
                 <th>Date</th>
@@ -217,24 +213,33 @@
             {% endfor %}
         </table>
 
+        <!-- ADD -->
         <form method="POST">
             {% csrf_token %}
             <input type="date" name="mill_date" required>
-            <input type="text" name="mill_name" pattern="[A-Za-z ]+" placeholder="Name" required>
+
+            <!-- ONLY TEXT -->
+            <input type="text" name="mill_name" pattern="[A-Za-z ]+" title="Only letters allowed" placeholder="Name" required>
+
+            <!-- DECIMAL ALLOWED -->
             <input type="number" step="0.01" name="mill_amount" placeholder="Amount" required>
+
             <button class="add-btn" name="mill_submit">Add</button>
         </form>
     </div>
+
 
     <!-- FARMER BOX -->
     <div class="box">
         <h2 class="farmer-title">GIVEN TO FARMERS</h2>
 
+        <!-- SEARCH -->
         <form method="GET" class="search-bar">
             <input type="text" name="farmer_search" placeholder="Search Farmer...">
             <button class="search-btn">🔍</button>
         </form>
 
+        <!-- TABLE -->
         <table>
             <tr>
                 <th>Date</th>
@@ -260,12 +265,20 @@
             {% endfor %}
         </table>
 
+        <!-- ADD -->
         <form method="POST">
             {% csrf_token %}
             <input type="date" name="farmer_date" required>
-            <input type="text" name="farmer_name" pattern="[A-Za-z ]+" placeholder="Farmer Name" required>
-            <input type="text" name="village" pattern="[A-Za-z ]+" placeholder="Village" required>
+
+            <!-- ONLY TEXT -->
+            <input type="text" name="farmer_name" pattern="[A-Za-z ]+" title="Only letters allowed" placeholder="Farmer Name" required>
+
+            <!-- ONLY TEXT -->
+            <input type="text" name="village" pattern="[A-Za-z ]+" title="Only letters allowed" placeholder="Village" required>
+
+            <!-- DECIMAL -->
             <input type="number" step="0.01" name="farmer_amount" placeholder="Amount" required>
+
             <button class="add-btn" name="farmer_submit">Add</button>
         </form>
     </div>

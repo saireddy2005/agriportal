@@ -16,48 +16,44 @@
         /* TITLE */
         .title {
             text-align: center;
-            font-size: 30px;
+            font-size: 36px;
             font-weight: bold;
-            margin-top: 80px;
+            margin-top: 40px; /* ✅ reduced */
             color: rgb(53, 48, 48);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
             letter-spacing: 2px;
         }
 
-        /* CONTAINER */
+        /* ✅ UPDATED CONTAINER (MAIN FIX) */
         .container {
             display: flex;
             justify-content: center;
             gap: 40px;
-            margin-top: 50px;
+
             flex-wrap: wrap;
-            align-items: flex-start;
-            padding-bottom: 40px;
+
+            min-height: 75vh;        /* 👈 pushes content downward */
+            align-items: center;     /* 👈 vertical center */
         }
 
-        /* ✅ MOBILE FIX (UPDATED) */
+        /* ✅ MOBILE FIX */
         @media (max-width: 768px) {
 
             .container {
                 flex-direction: column;
                 align-items: center;
-                margin-top: 20px;
+                justify-content: center;
+                min-height: 70vh;
             }
 
             .box {
                 width: 85%;
                 max-width: 340px;
-                padding: 18px;
                 margin-bottom: 20px;
             }
 
             .title {
                 font-size: 28px;
-                margin-top: 30px;
-            }
-
-            .add-btn {
-                width: 70%;
             }
         }
 
@@ -164,11 +160,10 @@
             transform: scale(1.05);
         }
 
-        /* BACK BUTTON (CENTER TOP LIKE YOUR NEED) */
+        /* BACK BUTTON (CENTER TOP) */
         .back-btn {
             display: block;
-            margin: 20px auto 0;
-            width: fit-content;
+            margin: 15px auto;
 
             background: rgba(118, 218, 93, 0.6);
             color: black;

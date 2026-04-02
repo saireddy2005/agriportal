@@ -13,12 +13,12 @@
             min-height: 100vh;
         }
 
-        /* 🔥 NEW TOP SECTION */
+        /* 🔥 TOP SECTION */
         .top-section {
-            margin-top: 120px;
+            margin-top: 20px;   /* ⬅️ keep everything at top */
         }
 
-        /* TITLE (slightly adjusted) */
+        /* TITLE */
         .title {
             text-align: center;
             font-size: 32px;
@@ -29,18 +29,18 @@
             letter-spacing: 2px;
         }
 
-        /* CONTAINER (UNCHANGED) */
+        /* CONTAINER (TOP ALIGN FIX) */
         .container {
             display: flex;
             justify-content: center;
             gap: 40px;
-            margin-top: 50px;
+            margin-top: 30px;   /* ⬅️ closer to title */
             flex-wrap: wrap;
-            align-items: flex-start;
+            align-items: flex-start; /* ⬅️ IMPORTANT */
             padding-bottom: 40px;
         }
 
-        /* MOBILE FIX (UNCHANGED) */
+        /* MOBILE FIX */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -51,6 +51,10 @@
             .box {
                 width: 85%;
                 max-width: 340px;
+            }
+
+            .title {
+                font-size: 26px;
             }
         }
 
@@ -157,7 +161,7 @@
             transform: scale(1.05);
         }
 
-        /* 🔥 UPDATED BACK BUTTON */
+        /* BACK BUTTON */
         .back-btn {
             display: block;
             margin: 10px auto;
@@ -185,7 +189,6 @@
 
 <body>
 
-<!-- 🔥 MOVED SECTION -->
 <div class="top-section">
     <a href="{% url 'profile' %}" class="back-btn">Back</a>
     <div class="title">💰 ACCOUNT MANAGEMENT SYSTEM</div>

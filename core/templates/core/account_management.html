@@ -27,11 +27,11 @@
             letter-spacing: 2px;
         }
 
-        /* ✅ BACK BUTTON FIX (CENTER + MOVING) */
-        .back-container {
+        /* ✅ BACK BUTTON CENTER (NOT FIXED) */
+        .back-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .back-btn {
@@ -84,6 +84,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
+        /* HEADERS */
         .box h2 {
             text-align: center;
             padding: 5px;
@@ -99,6 +100,7 @@
             background: linear-gradient(135deg, #16a34a, #14532d);
         }
 
+        /* SEARCH */
         .search-bar {
             display: flex;
             gap: 5px;
@@ -115,11 +117,13 @@
         .search-btn {
             padding: 5px 8px;
             background: #ebecef;
+            color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
         }
 
+        /* TABLE */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -137,6 +141,7 @@
             background: #f1f5f9;
         }
 
+        /* INPUTS */
         input {
             width: 100%;
             padding: 8px;
@@ -152,6 +157,7 @@
             background: white;
         }
 
+        /* ADD BUTTON */
         .add-btn {
             width: 50%;
             margin: 10px auto;
@@ -165,6 +171,7 @@
             font-weight: bold;
         }
 
+        /* DELETE BUTTON */
         .delete-btn {
             background: linear-gradient(135deg, #ff4d4d, #cc0000);
             color: white;
@@ -183,8 +190,8 @@
 
 <body>
 
-<!-- ✅ CENTERED BACK BUTTON -->
-<div class="back-container">
+<!-- ✅ MOVING BACK BUTTON -->
+<div class="back-wrapper">
     <a href="{% url 'profile' %}" class="back-btn">Back</a>
 </div>
 

@@ -25,7 +25,7 @@ background: rgba(96, 145, 47, 0.2);
 padding:80px;
 border-radius:18px;
 width:430px;
-
+position:relative; /* IMPORTANT for positioning button inside */
 }
 
 /* title */
@@ -44,18 +44,17 @@ margin:10px 0;
 font-size:23px;
 }
 
-/* back button */
+/* back button INSIDE BOX */
 
 .back-btn{
-position:fixed;
-bottom:120px;
-left:50%;
-transform:translateX(-50%);
+position:absolute;
+top:15px;
+left:15px;
 
-padding:10px 25px;
+padding:6px 12px;
 
 background:rgba(247, 230, 230, 0.6);
-border-radius:10px;
+border-radius:50px;
 
 text-decoration:none;
 font-weight:600;
@@ -64,12 +63,13 @@ color:black;
 box-shadow:0px 4px 10px rgba(0,0,0,0.3);
 
 transition:0.3s;
+font-size:14px;
 }
 
 .back-btn:hover{
 background:#7ad474;
 color:white;
-transform:translateX(-50%) scale(1.05);
+transform:scale(1.05);
 }
 
 </style>
@@ -78,6 +78,8 @@ transform:translateX(-50%) scale(1.05);
 <body>
 
 <div class="details-box">
+
+<a href="/profile/" class="back-btn">←</a>
 
 <div class="title">
 AGGREGATOR DETAILS
@@ -91,8 +93,6 @@ AGGREGATOR DETAILS
 <div class="detail">Mobile Number : 9182385153</div>
 
 </div>
-
-<a href="/profile/" class="back-btn">Back</a>
 
 </body>
 </html>

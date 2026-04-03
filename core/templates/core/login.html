@@ -1,146 +1,112 @@
-<!DOCTYPE html>
-<html>
+{% extends 'core/base.html' %}
 
-{% load static %}
+{% block content %}
 
-<head>
-<title>Login</title>
+<div class="login-page">
 
-<style>
-
-body{
-margin:0;
-font-family:Arial, sans-serif;
-height:100vh;
-
-background: url("{% static 'paddy4.jpeg' %}") no-repeat center center fixed;
-background-size: cover;
-
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-/* LOGIN BOX */
-.login-box{
-background:rgba(255,255,255,0.9);
-padding:30px;
-border-radius:15px;
-width:300px;
-text-align:center;
-box-shadow:0 6px 20px rgba(0,0,0,0.3);
-}
-
-/* TITLE */
-.login-box h2{
-margin-bottom:20px;
-color:#333;
-}
-
-/* INPUTS */
-.login-box input{
-width:100%;
-padding:10px;
-margin:10px 0;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-/* LOGIN BUTTON */
-.login-btn{
-width:100%;
-padding:10px;
-border:none;
-border-radius:25px;
-background:#8bc34a;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-.login-btn:hover{
-background:#6fa837;
-}
-
-/* LINKS SECTION */
-.links{
-margin-top:10px;
-text-align:center;
-}
-
-/* FORGOT PASSWORD BUTTON */
-.forgot-btn{
-display:inline-block;
-margin-top:10px;
-padding:8px 20px;
-background:#8bc34a;
-color:white;
-border-radius:20px;
-font-size:14px;
-text-decoration:none;
-}
-
-.forgot-btn:hover{
-background:#6fa837;
-}
-
-/* SIGNUP TEXT */
-.signup-link{
-display:block;
-margin-top:10px;
-color:#333;
-text-decoration:none;
-}
-
-/* BACK BUTTON (CENTERED) */
-.back-btn{
-display:block;
-margin:12px auto 0 auto;
-padding:6px 18px;
-background:#8bc34a;
-color:white;
-border-radius:20px;
-font-size:13px;
-text-decoration:none;
-text-align:center;
-width:fit-content;
-}
-
-.back-btn:hover{
-background:#6fa837;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="login-box">
+<div class="login-card">
 
 <h2>Rice Aggregation Service</h2>
 
 <form method="POST">
 {% csrf_token %}
 
-<input type="email" name="email" placeholder="Email" required>
-<input type="password" name="password" placeholder="Password" required>
+<input type="email" name="email" placeholder="Enter Email "
+oninput="this.value=this.value.toLowerCase()">
+
+<input type="password" name="password" placeholder="Enter Password">
 
 <button type="submit" class="login-btn">Login</button>
 
 </form>
 
-<div class="links">
+<div style="margin-top:15px; text-align:center;">
+<p><a href="/forgot-password/">Forgot Password?</a></p>
+<p>New user? <a href="/signup/">Create account</a></p>
+</div>
 
-<a href="/forgot-password/" class="forgot-btn">Forgot Password?</a>
-
-<a href="/signup/" class="signup-link">New user? Create account</a>
+<!-- BACK BUTTON -->
+<a href="{% url 'index' %}">
+<button class="back-btn">Back</button>
+</a>
 
 </div>
 
-<a href="/" class="back-btn">Back</a>
-
 </div>
 
-</body>
-</html>
+
+<style>
+
+.login-page{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
+background-image:url("/media/paddy1.jpeg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-card{
+background:rgb(234, 242, 233);
+padding:40px;
+border-radius:15px;
+width:450px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+/* needed for back button */
+position:relative;
+}
+
+.login-card input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+.login-btn{
+width:70%;
+padding:12px;
+background:#8BC34A;
+border:none;
+border-radius:25px;
+font-size:18px;
+cursor:pointer;
+}
+
+/* BACK BUTTON */
+
+.back-btn{
+position:absolute;
+bottom:20px;
+left:20px;
+
+padding:6px 18px;
+width:auto;          /* prevents full width */
+min-width:80px;     /* small button size */
+
+background:#8BC34A;
+border:none;
+border-radius:20px;
+font-size:14px;
+color:white;
+cursor:pointer;
+}
+
+.back-btn:hover{
+background:#6FAF34;
+}
+
+</style>
+
+{% endblock %}

@@ -11,74 +11,70 @@ margin:0;
 font-family:Arial, sans-serif;
 height:100vh;
 
-/* ✅ FIXED BACKGROUND */
+/* Background */
 background: url("{% static 'paddy4.jpeg' %}") no-repeat center center fixed;
 background-size: cover;
+
+/* ✅ Center everything */
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 /* Main container */
-
 .container{
 text-align:center;
-padding-top:100px;
-position:relative;
+width:90%;
+max-width:500px;
+padding:20px;
 z-index:2;
 }
 
 /* Title */
 .title{
-text-align:center;
-font-size:40px;
+font-size:28px;
 font-weight:bold;
 color:white;
-
 text-shadow:2px 2px 8px rgba(0,0,0,0.7);
-margin-top:50px;
-
-font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin-bottom:10px;
 }
 
 /* Subtitle */
-
 .subtitle{
-font-size:25px;
-margin-bottom:50px;
+font-size:16px;
+margin-bottom:25px;
 font-weight:bold;
 color:white;
 }
 
 /* Feature boxes */
-
 .feature-box{
 background-color:#94d06f;
-color:rgb(13, 12, 12);
-padding:14px 29px;
+color:#111;
+padding:12px;
 border-radius:20px;
-display:inline-block;
-margin:10px;
-font-size:16px;
+margin:8px auto;
+font-size:14px;
 font-weight:500;
 box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
 
-.features{
-text-align:center;
-margin-top:30px;
+/* ✅ Make full width on mobile */
+width:100%;
+max-width:320px;
 }
 
 /* Buttons */
 .center-buttons{
-text-align:center;
-margin-top:40px;
+margin-top:25px;
 }
 
 .btn{
-display:inline-block;
-width:180px;
+display:block;
+width:200px;
 padding:10px;
-margin:10px;
+margin:10px auto;
 border-radius:30px;
-font-size:18px;
+font-size:16px;
 text-decoration:none;
 text-align:center;
 font-weight:600;
@@ -100,11 +96,6 @@ border:2px solid #4CAF50;
 transform:scale(1.05);
 }
 
-.btn:active{
-background:#2f6b1e;
-color:white;
-}
-
 </style>
 
 </head>
@@ -121,8 +112,6 @@ Paddy Aggregation Service
 Collect • Store • Manage — Smart Platform for Rice Aggregator Data 🌾
 </div>
 
-<div class="features">
-
 <div class="feature-box">
 📄 Store Farmer Paddy Collection Data
 </div>
@@ -135,23 +124,13 @@ Collect • Store • Manage — Smart Platform for Rice Aggregator Data 🌾
 📊 Track Quantity & Bags Details
 </div>
 
-</div>
-
-<div class="features">
-
 <div class="feature-box">
 🔍 Access Aggregation Data Anytime
 </div>
 
-</div>
-
 <div class="center-buttons">
-
 <a href="/signup/" class="btn get-btn">Get Started</a>
-<br>
-
 <a href="/login/" class="btn login-btn">Login</a>
-
 </div>
 
 </div>

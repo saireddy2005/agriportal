@@ -9,19 +9,19 @@
 body{
 margin:0;
 font-family:Arial, sans-serif;
-height:100vh;
+min-height:100vh;
 
 /* Background */
 background: url("{% static 'paddy4.jpeg' %}") no-repeat center center fixed;
 background-size: cover;
 
-/* Center everything */
+/* Center layout */
 display:flex;
 justify-content:center;
 align-items:center;
 }
 
-/* Overlay for better visibility (like 2nd image) */
+/* Overlay (for better visibility like 2nd image) */
 body::before{
 content:"";
 position:absolute;
@@ -37,14 +37,14 @@ z-index:0;
 .container{
 text-align:center;
 width:90%;
-max-width:600px;
+max-width:700px;
 padding:20px;
 z-index:1;
 }
 
 /* Title */
 .title{
-font-size:30px;
+font-size:46px;
 font-weight:bold;
 color:white;
 margin-bottom:10px;
@@ -53,33 +53,42 @@ text-shadow:2px 2px 8px rgba(0,0,0,0.7);
 
 /* Subtitle */
 .subtitle{
-font-size:15px;
+font-size:17px;
 margin-bottom:25px;
 color:#ddd;
 }
 
-/* FEATURES GRID */
+/* FEATURES */
 .features{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:10px;
+gap:12px;
+margin-top:20px;
 }
 
-/* Feature boxes */
+/* Feature box */
 .feature-box{
-background:rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.25);
 backdrop-filter:blur(10px);
 color:white;
-padding:12px 15px;
+padding:12px;
 border-radius:12px;
 font-size:13px;
 font-weight:500;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
-
-/* IMPORTANT: 2 per row */
-width:45%;
 text-align:center;
+}
+
+/* First row → 3 boxes */
+.feature-box:nth-child(-n+3){
+width:30%;
+min-width:140px;
+}
+
+/* Second row → centered box */
+.feature-box:last-child{
+width:60%;
 }
 
 /* Buttons */
@@ -100,7 +109,6 @@ font-weight:600;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* Button styles */
 .get-btn{
 background:linear-gradient(45deg,#4facfe,#00c6ff);
 color:white;
@@ -115,11 +123,11 @@ color:#333;
 transform:scale(1.05);
 }
 
-/* MOBILE FIX */
-@media (max-width: 500px){
+/* MOBILE VIEW */
+@media (max-width: 600px){
 
 .feature-box{
-width:100%;   /* single column for small screens */
+width:100% !important;
 }
 
 .title{

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,24 +6,15 @@
 
 <style>
 
-
-
 body{
 margin:0;
 font-family:Arial, sans-serif;
 height:100vh;
 
-/* Paddy field background */
-
-background-image: url("/media/paddy4.jpeg")no-repeat center center fixed;
-
-
+/* ✅ FIXED BACKGROUND */
+background: url("{% static 'paddy4.jpeg' %}") no-repeat center center fixed;
 background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
 }
-
-
 
 /* Main container */
 
@@ -30,7 +22,6 @@ background-repeat: no-repeat;
 text-align:center;
 padding-top:200px;  
 }
-
 
 /* Title */
 .title{
@@ -42,11 +33,10 @@ font-size:40px;
 font-weight:bold;
 color:rgb(50, 67, 40);
 
-
 text-shadow:2px 2px 6px rgba(0,0,0,0.3);
-
 font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 /* Subtitle */
 
 .subtitle{
@@ -55,7 +45,6 @@ margin-bottom:50px;
 font-weight:bold;
 color: rgb(50, 67, 40);
 }
-
 
 /* Feature boxes */
 
@@ -75,11 +64,13 @@ box-shadow:0 4px 10px rgba(0,0,0,0.2);
 text-align:center;
 margin-top:30px;
 }
+
 /* Buttons */
 .center-buttons{
 text-align:center;
 margin-top:40px;
 }
+
 .btn{
 display:inline-block;
 width:180px;
@@ -91,17 +82,6 @@ text-decoration:none;
 text-align:center;
 font-weight:600;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
-}
-
-.get-btn{
-background:#63c132;
-color:white;
-}
-
-.login-btn{
-background:white;
-color:#2f6b1e;
-border:2px solid #4CAF50;
 }
 
 .get-btn{
@@ -125,60 +105,6 @@ color:white;
 }
 
 </style>
-
 </head>
 
-
 <body>
-
-<div class="container">
-
-<div class="title">
-     Paddy Aggregation Service</div>
-
-<div class="subtitle">
-Collect • Store • Manage — Smart Platform for Rice Aggregator Data 🌾
-</div>
-
-
-<!-- FIRST ROW (3 boxes) -->
-
-<div class="features">
-
-<div class="feature-box">
-📄 Store Farmer Paddy Collection Data
-</div>
-
-<div class="feature-box">
-🏭 Manage Rice Mill Entry Records
-</div>
-
-<div class="feature-box">
-📊 Track Quantity & Bags Details
-</div>
-
-</div>
-
-<div class="features">
-
-<div class="feature-box">
-🔍 Access Aggregation Data Anytime
-</div>
-
-</div>
-
-<!-- BUTTONS -->
-
-<div class="center-buttons">
-
-<a href="/signup/" class="btn get-btn">Get Started</a>
-<br>
-
-<a href="/login/" class="btn login-btn">Login</a>
-
-</div>
-
-</div>
-
-</body>
-</html>

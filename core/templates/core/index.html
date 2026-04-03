@@ -9,19 +9,22 @@
 body{
 margin:0;
 font-family:Arial, sans-serif;
-min-height:100vh;
 
-/* Background */
+/* FIX SCREEN */
+height:100vh;
+overflow:hidden;
+
+/* BACKGROUND IMAGE */
 background: url("{% static 'paddy4.jpeg' %}") no-repeat center center fixed;
 background-size: cover;
 
-/* Center layout */
+/* CENTER EVERYTHING */
 display:flex;
 justify-content:center;
 align-items:center;
 }
 
-/* Overlay */
+/* DARK OVERLAY */
 body::before{
 content:"";
 position:absolute;
@@ -33,125 +36,113 @@ background:rgba(0,0,0,0.35);
 z-index:0;
 }
 
-/* Container */
+/* MAIN CONTAINER */
 .container{
 text-align:center;
-width:100%;
-max-width:950px;
-padding:20px;
+width:90%;
+max-width:750px;
 z-index:1;
 }
 
-/* Title */
+/* TITLE */
 .title{
 font-size:46px;
 font-weight:bold;
 color:white;
-margin-bottom:10px;
-text-shadow:2px 2px 8px rgba(0,0,0,0.7);
+margin-bottom:8px;
 }
 
-/* Subtitle */
+/* SUBTITLE */
 .subtitle{
 font-size:17px;
-margin-bottom:25px;
+margin-bottom:20px;
 color:#ddd;
 }
 
-/* FEATURES */
+/* FEATURES GRID */
 .features{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:15px;
-margin-top:25px;
-max-width:700px;
-margin-left:auto;
-margin-right:auto;
+gap:10px;
 }
 
-/* Feature box */
+/* FEATURE BOX */
 .feature-box{
 background:rgba(255,255,255,0.25);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(8px);
 color:white;
-padding:12px 15px;
+padding:10px 12px;
 border-radius:12px;
-font-size:13px;
-font-weight:500;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+font-size:12px;
 text-align:center;
 }
 
-/* FIRST ROW → 3 equal boxes */
-.feature-box:nth-child(1),
-.feature-box:nth-child(2),
-.feature-box:nth-child(3){
-flex:1 1 30%;
-max-width:30%;
+/* 2 + 2 LAYOUT */
+.feature-box{
+flex:1 1 45%;
+max-width:45%;
 }
 
-/* SECOND ROW → centered box */
+/* LAST BOX FULL WIDTH */
 .feature-box:nth-child(4){
-flex:0 1 60%;
-max-width:60%;
-margin-left:auto;
-margin-right:auto;
+flex:1 1 90%;
+max-width:90%;
 }
 
-/* Buttons */
+/* BUTTONS */
 .center-buttons{
-margin-top:30px;
+margin-top:20px;
 }
 
 .btn{
 display:block;
-width:200px;
+width:180px;
 padding:10px;
-margin:10px auto;
+margin:8px auto;
 border-radius:25px;
-font-size:16px;
+font-size:15px;
 text-decoration:none;
 text-align:center;
 font-weight:600;
-box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* GET STARTED (TOP) */
 .get-btn{
-background:linear-gradient(45deg,#78dc68,#4dcf5f);
+background:linear-gradient(45deg,#7ed957,#4caf50);
 color:white;
 }
 
+/* LOGIN (BOTTOM) */
 .login-btn{
 background:white;
-color:#333;
+color:#2f6b1e;
 }
 
-/* Hover */
+/* HOVER */
 .btn:hover{
 transform:scale(1.05);
 }
 
-/* MOBILE */
-@media (max-width: 600px){
+/* MOBILE FIX */
+@media (max-width:600px){
 
 .feature-box{
-flex:1 1 100% !important;
-max-width:100% !important;
+flex:1 1 100%;
+max-width:100%;
 }
 
 .title{
-font-size:24px;
+font-size:22px;
 }
 
 .subtitle{
-font-size:13px;
+font-size:12px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -177,18 +168,22 @@ Collect • Store • Manage — Smart Platform for Rice Aggregator Data 🌾
 </div>
 
 <div class="feature-box">
-📊 Track Quantity & Bags Details
+🔍 Access Aggregation Data Anytime
 </div>
 
 <div class="feature-box">
-🔍 Access Aggregation Data Anytime
+📊 Track Quantity & Bags Details
 </div>
 
 </div>
 
 <div class="center-buttons">
+
+<!-- ✅ BACK TO ORIGINAL ORDER -->
 <a href="/signup/" class="btn get-btn">Get Started</a>
+
 <a href="/login/" class="btn login-btn">Login</a>
+
 </div>
 
 </div>

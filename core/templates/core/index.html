@@ -21,7 +21,7 @@ justify-content:center;
 align-items:center;
 }
 
-/* Overlay (for better visibility like 2nd image) */
+/* Overlay */
 body::before{
 content:"";
 position:absolute;
@@ -33,11 +33,11 @@ background:rgba(0,0,0,0.35);
 z-index:0;
 }
 
-/* Main container */
+/* Container */
 .container{
 text-align:center;
 width:90%;
-max-width:700px;
+max-width:750px;
 padding:20px;
 z-index:1;
 }
@@ -63,8 +63,11 @@ color:#ddd;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:12px;
-margin-top:20px;
+gap:15px;
+margin-top:25px;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
 }
 
 /* Feature box */
@@ -72,7 +75,7 @@ margin-top:20px;
 background:rgba(255,255,255,0.25);
 backdrop-filter:blur(10px);
 color:white;
-padding:12px;
+padding:12px 15px;
 border-radius:12px;
 font-size:13px;
 font-weight:500;
@@ -80,20 +83,25 @@ box-shadow:0 4px 10px rgba(0,0,0,0.3);
 text-align:center;
 }
 
-/* First row → 3 boxes */
-.feature-box:nth-child(-n+3){
-width:30%;
-min-width:140px;
+/* FIRST ROW → 3 equal boxes */
+.feature-box:nth-child(1),
+.feature-box:nth-child(2),
+.feature-box:nth-child(3){
+flex:1 1 30%;
+max-width:30%;
 }
 
-/* Second row → centered box */
-.feature-box:last-child{
-width:60%;
+/* SECOND ROW → centered box */
+.feature-box:nth-child(4){
+flex:0 1 60%;
+max-width:60%;
+margin-left:auto;
+margin-right:auto;
 }
 
 /* Buttons */
 .center-buttons{
-margin-top:25px;
+margin-top:30px;
 }
 
 .btn{
@@ -110,7 +118,7 @@ box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
 .get-btn{
-background:linear-gradient(45deg,#4facfe,#00c6ff);
+background:linear-gradient(45deg,#78dc68,#4dcf5f);
 color:white;
 }
 
@@ -119,15 +127,17 @@ background:white;
 color:#333;
 }
 
+/* Hover */
 .btn:hover{
 transform:scale(1.05);
 }
 
-/* MOBILE VIEW */
+/* MOBILE */
 @media (max-width: 600px){
 
 .feature-box{
-width:100% !important;
+flex:1 1 100% !important;
+max-width:100% !important;
 }
 
 .title{

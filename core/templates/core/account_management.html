@@ -12,14 +12,12 @@
             background-size: cover;
             min-height: 100vh;
 
-            /* ✅ CENTER EVERYTHING LOWER */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        /* ✅ BACK BUTTON (SMALL + CENTERED ABOVE TITLE) */
         .back-btn {
             background: rgba(118, 218, 93, 0.6);
             color: black;
@@ -30,7 +28,6 @@
             margin-bottom: 10px;
         }
 
-        /* ✅ TITLE */
         .title {
             text-align: center;
             font-size: 32px;
@@ -41,7 +38,6 @@
             margin-bottom: 30px;
         }
 
-        /* CONTAINER */
         .container {
             display: flex;
             justify-content: center;
@@ -49,11 +45,10 @@
             flex-wrap: wrap;
         }
 
-        /* MOBILE FIX */
         @media (max-width: 768px) {
             body {
                 justify-content: flex-start;
-                padding-top: 75px; /* ✅ pushes everything below white line */
+                padding-top: 75px;
             }
 
             .container {
@@ -66,7 +61,6 @@
             }
         }
 
-        /* CARD */
         .box {
             width: 360px;
             background: white;
@@ -157,7 +151,6 @@
             border-radius: 8px;
             cursor: pointer;
         }
-
     </style>
 </head>
 
@@ -172,16 +165,14 @@
     <!-- MILL BOX -->
     <div class="box">
         <h2 class="mill-title">TOOK FROM OTHERS</h2>
-<form method="GET" class="search-bar">
 
-    <input type="date" name="date" value="{{ request.GET.date }}">
-
-    <input type="text" name="name" placeholder="Search Name..."
-           value="{{ request.GET.name }}">
-
-    <button class="search-btn">🔍</button>
-
-</form>
+        <!-- ✅ SINGLE SEARCH -->
+        <form method="GET" class="search-bar">
+            <input type="text" name="mill_search"
+                   placeholder="Search Date or Name..."
+                   value="{{ request.GET.mill_search }}">
+            <button class="search-btn">🔍</button>
+        </form>
 
         <table>
             <tr>
@@ -219,19 +210,13 @@
     <div class="box">
         <h2 class="farmer-title">GIVEN TO FARMERS</h2>
 
-      <form method="GET" class="search-bar">
-
-    <input type="date" name="date" value="{{ request.GET.date }}">
-
-    <input type="text" name="name" placeholder="Search Name..."
-           value="{{ request.GET.name }}">
-
-    <input type="text" name="village" placeholder="Search Village..."
-           value="{{ request.GET.village }}">
-
-    <button class="search-btn">🔍</button>
-
-</form>
+        <!-- ✅ SINGLE SEARCH -->
+        <form method="GET" class="search-bar">
+            <input type="text" name="farmer_search"
+                   placeholder="Search Date, Name, Village..."
+                   value="{{ request.GET.farmer_search }}">
+            <button class="search-btn">🔍</button>
+        </form>
 
         <table>
             <tr>

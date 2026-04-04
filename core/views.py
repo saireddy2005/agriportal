@@ -631,9 +631,10 @@ def harvester_entry(request):
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
+from django.db.models import Q
 from .models import MillTransaction, FarmerTransaction
 
-# ✅ Admin check
+
 def is_admin(user):
     return user.is_superuser
 
@@ -644,7 +645,6 @@ def account_management(request):
     # ADD DATA
     if request.method == 'POST':
 
-        # Mill Entry
         if 'mill_submit' in request.POST:
             MillTransaction.objects.create(
                 date=request.POST.get('mill_date'),
@@ -652,7 +652,6 @@ def account_management(request):
                 amount=request.POST.get('mill_amount')
             )
 
-        # Farmer Entry
         if 'farmer_submit' in request.POST:
             FarmerTransaction.objects.create(
                 date=request.POST.get('farmer_date'),
@@ -664,30 +663,39 @@ def account_management(request):
         return redirect('account_management')
 
 
+    # ✅ SINGLE SEARCH INPUTS
     mill_query = request.GET.get('mill_search', '')
     farmer_query = request.GET.get('farmer_search', '')
 
     mill_data = MillTransaction.objects.all()
     farmer_data = FarmerTransaction.objects.all()
 
+    # ✅ MILL SEARCH (Date + Name)
     if mill_query:
-        mill_data = mill_data.filter(mill_name__icontains=mill_query)
+        mill_data = mill_data.filter(
+            Q(mill_name__icontains=mill_query) |
+            Q(date__icontains=mill_query)
+        )
 
+    # ✅ FARMER SEARCH (Date + Name + Village)
     if farmer_query:
-        farmer_data = farmer_data.filter(farmer_name__icontains=farmer_query)
+        farmer_data = farmer_data.filter(
+            Q(farmer_name__icontains=farmer_query) |
+            Q(village__icontains=farmer_query) |
+            Q(date__icontains=farmer_query)
+        )
 
     return render(request, 'core/account_management.html', {
         'mill_data': mill_data,
         'farmer_data': farmer_data
     })
 
-# DELETE MILL
+
 def delete_mill(request, id):
     MillTransaction.objects.get(id=id).delete()
     return redirect('account_management')
 
 
-# DELETE FARMER
 def delete_farmer(request, id):
     FarmerTransaction.objects.get(id=id).delete()
     return redirect('account_management')

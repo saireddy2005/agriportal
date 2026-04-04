@@ -664,41 +664,22 @@ def account_management(request):
         return redirect('account_management')
 
 
-# SEARCH
-mill_query = request.GET.get('mill_search', '')
-farmer_query = request.GET.get('farmer_search', '')
+    mill_query = request.GET.get('mill_search', '')
+    farmer_query = request.GET.get('farmer_search', '')
 
-# NEW filters
-mill_date = request.GET.get('mill_date', '')
-farmer_date = request.GET.get('farmer_date', '')
-farmer_village = request.GET.get('farmer_village', '')
+    mill_data = MillTransaction.objects.all()
+    farmer_data = FarmerTransaction.objects.all()
 
-mill_data = MillTransaction.objects.all()
-farmer_data = FarmerTransaction.objects.all()
+    if mill_query:
+        mill_data = mill_data.filter(mill_name__icontains=mill_query)
 
-# 🔹 MILL FILTER
-if mill_query:
-    mill_data = mill_data.filter(mill_name__icontains=mill_query)
+    if farmer_query:
+        farmer_data = farmer_data.filter(farmer_name__icontains=farmer_query)
 
-if mill_date:
-    mill_data = mill_data.filter(date=mill_date)
-
-
-# 🔹 FARMER FILTER
-if farmer_query:
-    farmer_data = farmer_data.filter(farmer_name__icontains=farmer_query)
-
-if farmer_date:
-    farmer_data = farmer_data.filter(date=farmer_date)
-
-if farmer_village:
-    farmer_data = farmer_data.filter(village__icontains=farmer_village)
-
-
-return render(request, 'core/account_management.html', {
-    'mill_data': mill_data,
-    'farmer_data': farmer_data
-})
+    return render(request, 'core/account_management.html', {
+        'mill_data': mill_data,
+        'farmer_data': farmer_data
+    })
 
 # DELETE MILL
 def delete_mill(request, id):

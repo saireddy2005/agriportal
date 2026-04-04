@@ -172,7 +172,7 @@
     <!-- MILL BOX -->
     <div class="box">
         <h2 class="mill-title">TOOK FROM OTHERS</h2>
-   <form method="GET" class="search-bar">
+<form method="GET" class="search-bar">
 
     <input type="date" name="date" value="{{ request.GET.date }}">
 
@@ -219,7 +219,7 @@
     <div class="box">
         <h2 class="farmer-title">GIVEN TO FARMERS</h2>
 
-       <form method="GET" class="search-bar">
+      <form method="GET" class="search-bar">
 
     <input type="date" name="date" value="{{ request.GET.date }}">
 
@@ -262,7 +262,7 @@
             {% csrf_token %}
             <input type="date" name="farmer_date" required>
             <input type="text" name="farmer_name" pattern="[A-Za-z ]+" placeholder="Farmer Name" required>
-            <input type="text" name="farmer_village" pattern="[A-Za-z ]+" placeholder="Village" required>
+            <input type="text" name="village" pattern="[A-Za-z ]+" placeholder="Village" required>
             <input type="number" step="0.01" name="farmer_amount" placeholder="Amount" required>
             <button class="add-btn" name="farmer_submit">Add</button>
         </form>
